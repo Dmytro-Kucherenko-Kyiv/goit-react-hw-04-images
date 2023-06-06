@@ -1,26 +1,44 @@
-@import-normalize; /* bring in normalize.css styles */
+import { createGlobalStyle } from 'styled-components';
+import 'modern-normalize';
+
+export const GlobalStyle = createGlobalStyle`
+html {
+  box-sizing: border-box;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  color: #212121;
+  background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-.App {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px;
+ul, ol{
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
+/*
+ * Стили компонента Searchbar
+ */
 .Searchbar {
   top: 0;
   left: 0;
@@ -29,31 +47,31 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  min-height: 4rem;
+  padding: 0.75rem 1.5rem; 
   color: #fff;
   background-color: #3f51b5;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
+/*
+ * Стили компонента SearchForm
+ */
 .SearchForm {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 37rem;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 0.2rem;
   overflow: hidden;
 }
 
 .SearchForm-button {
   display: inline-block;
-  width: 48px;
-  height: 48px;
+  width: 3rem;
+  height: 3rem;
   border: 0;
   opacity: 0.6;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -74,51 +92,60 @@ code {
 .SearchForm-input {
   display: inline-block;
   width: 100%;
+  height: 100%;
   font: inherit;
-  font-size: 20px;
+  font-size: 1.25rem;
   border: none;
   outline: none;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .SearchForm-input::placeholder {
   font: inherit;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
-.ImageGallery {
+.GalleryList {   
   display: grid;
-  max-width: calc(100vw - 48px);
+  max-width: 95%;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-gap: 16px;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding: 0;
-  list-style: none;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  
 }
+/*
+ * Стили компонента ImageGalleryItem
+ */
 
-.ImageGalleryItem {
-  border-radius: 2px;
+.ImageGalleryItem { 
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  overflow: hidden;
+  border-radius: 0.125rem;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 .ImageGalleryItem-image {
   width: 100%;
-  height: 260px;
+  /* height: 260px; */
   object-fit: cover;
+  aspect-ratio: 16 / 9; 
+  overflow: hidden;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ImageGalleryItem-image:hover {
+.ImageGalleryItem:hover {
   transform: scale(1.03);
   cursor: zoom-in;
 }
 
-.Overlay {
+/* 
+ * Стили компонента Modal
+ */
+/*  
+.OverlayItem {
   position: fixed;
   top: 0;
   left: 0;
@@ -129,14 +156,19 @@ code {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1200;
-}
+} */
 
-.Modal {
+/* .Modal {
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
-}
+}  */
 
+/*
+* Стили компонента Buton (Load more)
+*/
 .Button {
+  width: 10%;
+  margin: 0 auto;
   padding: 8px 16px;
   border-radius: 2px;
   background-color: #3f51b5;
@@ -161,3 +193,4 @@ code {
 .Button:focus {
   background-color: #303f9f;
 }
+`;
